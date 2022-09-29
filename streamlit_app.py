@@ -29,14 +29,15 @@ try:
   else:
     streamlit.write('The user entered ', fruit_choice)
     # write your own comment -what does the next line do? 
+    streamlit.header("Fruityvice Fruit Advice!")
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
     fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
     # write your own comment - what does this do?
     streamlit.dataframe(fruityvice_normalized)
 except URLError as e:
   streamlit.error()
 
-streamlit.header("Fruityvice Fruit Advice!")
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+
 
 streamlit.stop()
 
